@@ -36,6 +36,18 @@ build:
 	@echo "⚙️ Compilando..."
 	@go build -o main.exe .
 
+#DOCKER#
+
+# Construir la imagen de Docker
+	docker-build:
+		@echo "🐳 Construyendo imagen Docker ultra-ligera..."
+		@docker build -t mariogeo:v1 .
+
+# Correr el contenedor
+	docker-run:
+		@echo "🚀 Corriendo MarioGeo en Docker..."
+		@docker run -p 8080:8080 mariogeo:v1
+
 # 5. EL COMANDO MAESTRO: Limpiar, Testear y Watchdog
 dev: clean lint test
 	@echo "🚀 Lanzando Watchdog de salud y memoria..."

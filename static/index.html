@@ -161,6 +161,27 @@
             margin-top: 5px;
         }
 
+        /* Animación de borde brillante para la calculadora */
+        .featured.htmx-request {
+            position: relative;
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(255, 62, 62, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        /* Efecto de gradiente animado en el fondo */
+        .bento-item.featured {
+            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,62,62,0.05) 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 5s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         @media (max-width: 768px) {
             .featured { grid-column: span 1; }
         }
@@ -270,6 +291,15 @@
            }
        });
     </script>
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/static/sw.js');
+      }
+    </script>
+
+    <link rel="manifest" href="/static/manifest.json">
+
 </body>
 
 </html>

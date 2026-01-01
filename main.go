@@ -69,6 +69,13 @@ func main() {
 	mux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) { fmt.Fprint(w, "OK") })
 	mux.HandleFunc("/favicon.ico", func(w http.ResponseWriter, r *http.Request) { w.WriteHeader(204) })
 
+	mux.HandleFunc("/manifest.json", func(w http.ResponseWriter, r *http.Request) {
+	    http.ServeFile(w, r, "static/manifest.json")
+	})
+	mux.HandleFunc("/sw.js", func(w http.ResponseWriter, r *http.Request) {
+	    http.ServeFile(w, r, "static/sw.js")
+	})
+
 	// 3. Servir archivos estáticos
 	fs := http.FileServer(http.Dir("./static"))
 	mux.Handle("/static/", http.StripPrefix("/static/", fs))
@@ -79,11 +86,11 @@ func main() {
 
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "8080"
+		port = "8080" // Valor por defecto local
 	}
 
 	log.Printf("🚀 Sistema 10x corriendo en http://localhost:%s", port)
-
+	
 	// 5. Iniciar Servidor usando el handler envuelto
 	err := http.ListenAndServe(":"+port, finalHandler)
 	if err != nil {

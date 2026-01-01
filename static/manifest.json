@@ -1,0 +1,15 @@
+{
+  "name": "MarioGeo 10x",
+  "short_name": "MarioGeo",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#ff3e3e",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/1055/1055650.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
