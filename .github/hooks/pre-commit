@@ -1,0 +1,10 @@
+#!/bin/sh
+# 1. Formatear
+go fmt ./...
+# 2. Revisar errores
+go vet ./...
+# 3. Si algo está mal, no deja hacer el commit
+if [ $? -ne 0 ]; then
+    echo "❌ Error: El código no pasa las pruebas de calidad."
+    exit 1
+fi

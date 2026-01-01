@@ -1,0 +1,32 @@
+name: Go Continuous Integration
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Clonar repositorio
+      uses: actions/checkout@v4
+
+    - name: 🐹 Configurar Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.21'
+
+    - name: 📦 Instalar dependencias
+      run: go mod tidy
+
+    - name: 🛠️ Compilar binario (Build Test)
+      run: go build -v -o main .
+
+    - name: 🧪 Ejecutar Tests Unitarios
+      run: go test -v ./...
+
+    - name: 🛡️ Verificación de Seguridad (Vulnerabilidades)
+      run: go vet ./...

@@ -1,0 +1,22 @@
+# Binarios
+main.exe
+main
+*.exe
+*.bin
+
+# Variables de entorno (Secretos)
+.env
+
+# Dependencias y logs
+vendor/
+*.log
+
+# IDEs y Editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Sistema Operativo
+.DS_Store
+Thumbs.db
