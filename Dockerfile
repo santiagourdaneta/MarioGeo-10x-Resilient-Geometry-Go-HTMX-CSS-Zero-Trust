@@ -1,9 +1,10 @@
 # ETAPA 1: Compilación (El Constructor)
-FROM golang:1.21-alpine AS builder
+FROM golang:1.24.3-alpine AS builder
 WORKDIR /app
 # Copiar archivos de dependencias
 COPY go.mod ./
 RUN go mod download
+COPY go.sum ./
 # Copiar el código fuente
 COPY . .
 # Compilar un binario estático (sin dependencias de C)
