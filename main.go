@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/joho/godotenv"
 	"html/template"
 	"log"
 	"net/http"
@@ -11,7 +12,6 @@ import (
 	"runtime"
 	"strconv"
 	"time"
-	"github.com/joho/godotenv"
 )
 
 type SystemStatus struct {
@@ -58,7 +58,7 @@ func withTimeouts(next http.Handler) http.Handler {
 
 func main() {
 	_ = godotenv.Load()
-	
+
 	// 1. Crear el Multiplexor
 	mux := http.NewServeMux()
 
@@ -78,10 +78,12 @@ func main() {
 	finalHandler := withTimeouts(loggerMiddleware(mux))
 
 	port := os.Getenv("PORT")
-	if port == "" { port = "8080" }
+	if port == "" {
+		port = "8080"
+	}
 
 	log.Printf("🚀 Sistema 10x corriendo en http://localhost:%s", port)
-	
+
 	// 5. Iniciar Servidor usando el handler envuelto
 	err := http.ListenAndServe(":"+port, finalHandler)
 	if err != nil {
@@ -98,10 +100,13 @@ func handleIndex(w http.ResponseWriter, r *http.Request) {
 	}
 	t, err := template.ParseFiles("static/index.html")
 	if err != nil {
-		http.Error(w, "No se encontró static/index.html", 500)
+		http.Error(w, "Error cargando template", 500)
 		return
 	}
-	t.Execute(w, nil)
+	// Ejecutar una sola vez y capturar error
+	if err := t.Execute(w, nil); err != nil {
+		log.Printf("Error ejecutando template: %v", err)
+	}
 }
 
 func handleStatus(w http.ResponseWriter, r *http.Request) {
@@ -115,15 +120,27 @@ func handleStatus(w http.ResponseWriter, r *http.Request) {
 		ApiHealth:     "OK",
 	}
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(status)
+	// Encode escribe directamente en el ResponseWriter una sola vez
+	if err := json.NewEncoder(w).Encode(status); err != nil {
+		log.Printf("Error codificando JSON: %v", err)
+	}
 }
 
 func handleCalculate(w http.ResponseWriter, r *http.Request) {
+
+	log.Printf("📥 Solicitud recibida: %s %s desde %s", r.Method, r.URL.Path, r.RemoteAddr)
+
 	query := r.URL.Query().Get("sides")
 	sides, _ := strconv.Atoi(query)
+
 	if sides < 3 {
-		fmt.Fprint(w, "Mínimo 3 lados")
+		fmt.Fprint(w, "La geometría requiere al menos 3 lados.")
 		return
 	}
-	fmt.Fprintf(w, "📐 Triángulos: <strong>%d</strong>", sides-2)
+
+	// Usamos la función que acabamos de crear
+	nombre := getPolygonName(sides)
+	triangulos := sides - 2
+
+	fmt.Fprintf(w, "Este es un <strong>%s</strong>. <br> 📐 Se puede dividir en <strong>%d</strong> triángulos.", nombre, triangulos)
 }

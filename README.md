@@ -1,50 +1,95 @@
-# 📐 MarioGeo: Sistema Geométrico 10x
+# 📐 MarioGeo: Sistema Geométrico 10x 
 
+![CI](https://github.com/santiagourdaneta/MarioGeo-10x-Resilient-Geometry-Go-HTMX-CSS-Zero-Trust/actions/workflows/ci.yml/badge.svg)
 ![Status](https://img.shields.io/badge/Status-ALIVE-success?style=for-the-badge)
 ![Architecture](https://img.shields.io/badge/Architecture-Zero--Trust-red?style=for-the-badge)
 ![Tech](https://img.shields.io/badge/Tech-Go_%2B_HTMX-blue?style=for-the-badge)
-![CI](https://github.com/santiagourdaneta/MarioGeo-10x-Resilient-Geometry-Go-HTMX-CSS-Zero-Trust/actions/workflows/ci.yml/badge.svg)
 
-**MarioGeo** es una plataforma de cálculo geométrico que aplica principios avanzados de ingeniería de software para garantizar la máxima disponibilidad y seguridad con el mínimo consumo de recursos.
+**MarioGeo** es una plataforma de ingeniería geométrica de alto rendimiento. Diseñada para hardware restringido, utiliza una arquitectura de comunicación asíncrona y autocuración (Auto-healing) para garantizar disponibilidad constante.
 
-## 🚀 Características Principales
 
-- **Arquitectura Async-First:** Comunicación eficiente entre el frontend y backend mediante HTMX, evitando recargas innecesarias.
-- **Zero-Trust & Least Privilege:** Implementación de seguridad defensiva, validaciones en el borde (Edge) y reducción de superficie de ataque.
-- **Auto-Healing Watchdog:** Sistema vigilante en Bash que monitorea la salud y el consumo de memoria, reiniciando el servicio automáticamente ante anomalías.
-- **Resiliencia & Backpressure:** Control de timeouts y manejo de carga para evitar el colapso del sistema en hardware de bajos recursos.
+## 🏗️ Arquitectura del Sistema
 
-## 🛠️ Stack Tecnológico
+El sistema se basa en tres pilares de ingeniería:
 
-- **Backend:** Go (Net/HTTP, Goroutines, Timeouts Middleware).
-- **Frontend:** HTML5, CSS3 (Bento Grid, Scroll-driven animations, 3D Transforms), HTMX.
-- **DevOps:** Bash Watchdog, Health-check endpoints.
+1. **Backend Modular (Go):** Separación estricta entre el servidor HTTP (`main.go`) y la lógica de cálculo (`geometry.go`).
+2. **Frontend Ultra-Light (HTMX):** Carga dinámica de componentes sin recargas de página, reduciendo el consumo de ancho de banda en un 80%.
+3. **Defensa en Profundidad:** Validación triple (CSS/HTML5 en el Edge, AWK en el Linter y Go en el Core).
 
-## 📦 Instalación y Uso
+## 🛠️ Herramientas de Calidad (No-Node Stack)
 
-1. **Clonar el repositorio:**
+Para mantener el sistema ligero, he eliminado la dependencia de Node.js, utilizando herramientas nativas de Unix/GNU:
+
+- **Linter de Go:** `golangci-lint` para análisis estático profundo.
+- **Linter de Frontend:** Scripts personalizados en `AWK` para validar integridad de etiquetas `<script>` y `<style>`.
+- **Git Hooks:** - `pre-commit`: Formatea y limpia el código automáticamente.
+  - `pre-push`: Bloquea la subida a GitHub si los tests unitarios fallan.
+
+## 📊 Panel de Observabilidad
+
+El sistema incluye telemetría en tiempo real:
+- **Watchdog en Terminal:** Monitorea RAM y CPU cada 15s.
+- **Dashboard Web:** Integración con `/api/status` para visualizar el estado del servidor directamente en la UI mediante HTMX.
+
+## 📦 Instalación y Desarrollo Rápido
+
+Si tienes instalado `make` y `Go`, el flujo es instantáneo. El uso de `make dev` simplifica la vida de cualquier otro desarrollador que vea este proyecto.
+
+1. **Clonar y Preparar:**
    ```bash
-   git clone [https://github.com/tu-usuario/mario-geo-landing.git](https://github.com/tu-usuario/mario-geo-landing.git)
-   cd mario-geo-landing
+   git clone [https://github.com/santiagourdaneta/MarioGeo-10x-Resilient-Geometry-Go-HTMX-CSS-Zero-Trust.git](https://github.com/santiagourdaneta/MarioGeo-10x-Resilient-Geometry-Go-HTMX-CSS-Zero-Trust.git)
+   cd MarioGeo-10x-Resilient-Geometry-Go-HTMX-CSS-Zero-Trust
 
-2. Configurar variables de entorno: Crea un archivo .env basado en el entorno de desarrollo:
+2. Comando Maestro (Dev Mode): Este comando limpia, ejecuta linters, corre tests y lanza el sistema de autocuración:
 
-   PORT=8080
-   DEBUG=true
+  make dev
 
-3. Ejecutar con Auto-Healing:
+3. Ejecución Manual:
 
-   chmod +x watchdog.sh
-   ./watchdog.sh
+  go run .
 
-4. Acceso: Abre tu navegador en http://localhost:8080
+🧪 Testing
 
-📊 SLOs (Service Level Objectives)
+Garantizo la precisión matemática mediante tests unitarios:
 
-Disponibilidad: 99.9% mediante el watchdog de autocuración.
+  make test
 
-Latencia: < 200ms en el procesamiento geométrico.
+Cubre: Lógica de polígonos, cálculo de triángulos y manejo de errores.
 
-Memoria: Límite estricto de 100MB para entornos restringidos.
+Ingeniería de Santiago Urdaneta | Zero-Trust Architecture | 2026
 
-Diseñado con ❤️ por Santiago Urdaneta | 2025
+
+🗺️ Roadmap de Evolución (Vision 2026)
+El proyecto está diseñado para evolucionar hacia una plataforma de grado industrial siguiendo estos hitos:
+
+🟢 Fase 1: Portabilidad Inmutable (Q1 2026)
+Dockerización Ultra-Light: Creación de un Dockerfile multi-stage basado en scratch para generar imágenes de <15MB.
+
+Orquestación Básica: Configuración de docker-compose para despliegue instantáneo con balanceo de carga.
+
+🟡 Fase 2: Mobile-First & Offline (Q2 2026)
+PWA (Progressive Web App): Implementación de Service Workers para que la calculadora funcione sin conexión a internet.
+
+Manifest V3: Soporte para instalación nativa en dispositivos móviles y escritorio.
+
+🟡 Fase 3: Gráficos de Alto Vértigo (Q3 2026)
+Renderizado WebGL: Integración de Three.js o WebGL puro para visualizar los polígonos en 3D real mientras el usuario escribe.
+
+Exportación CAD: Funcionalidad para descargar los cálculos en formatos vectoriales (.svg / .dxf).
+
+🔴 Fase 4: Escalabilidad Global (Q4 2026)
+Distribución en el Edge: Despliegue en Fly.io o Cloudflare Workers para latencias <50ms a nivel mundial.
+
+API Pública Protegida: Implementación de Rate Limiting avanzado y claves API para uso por terceros.
+
+
+Motivaciones del Roadmap de Evolución (Vision 2026):
+
+Dockerización: Preparar el código para la nube moderna.
+
+PWA: Experiencia del usuario (UX) y el acceso en áreas con mala conexión.
+
+WebGL: Elevar el proyecto de "herramienta de texto" a "experiencia visual" (Vértigo 3D).
+
+
+Este Roadmap es dinámico. Se priorizan las tareas que maximicen la resiliencia y minimicen el consumo de recursos.

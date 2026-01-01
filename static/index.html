@@ -210,6 +210,16 @@
             <p>Calcula hipotenusas para proyectar cada triángulo en pantalla.</p>
         </div>
 
+        <div class="bento-item" 
+             hx-get="/api/status" 
+             hx-trigger="load, every 10s" 
+             hx-swap="none">
+            <h3>🖥️ Estado del Sistema</h3>
+            <div id="system-metrics">
+                <div class="spinner"></div> Cargando telemetría...
+            </div>
+        </div>
+
         <div class="bento-item credit-card">
             <div class="credit-card-inner">
                 <div class="front">

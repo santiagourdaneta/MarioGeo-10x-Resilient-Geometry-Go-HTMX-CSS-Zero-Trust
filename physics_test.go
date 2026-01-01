@@ -13,7 +13,7 @@ func CalculateTriangles(n int) int {
 }
 
 func TestCalculateTriangles(t *testing.T) {
-	// 1. Pruebas Unitarias 
+	// 1. Pruebas Unitarias
 	tests := []struct {
 		name     string
 		input    int
@@ -35,7 +35,7 @@ func TestCalculateTriangles(t *testing.T) {
 	}
 }
 
-// Prueba de Estrés / Performance 
+// Prueba de Estrés / Performance
 func BenchmarkCalculateTriangles(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		CalculateTriangles(1000)

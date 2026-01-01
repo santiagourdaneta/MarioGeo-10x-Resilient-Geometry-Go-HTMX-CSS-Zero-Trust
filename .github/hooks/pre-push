@@ -1,13 +1,15 @@
-#!/bin/sh
-echo "🔍 Validando calidad de código antes del Push..."
+#!/bin/bash
+# 🛡️ Git Guard: MarioGeo Pre-push
+echo "🚀 Verificando integridad antes del push..."
 
-# Ejecutar el formateador de Go
-go fmt ./...
+# Ejecutamos el test del Makefile
+make test
 
-# Ejecutar el Linter de Go
-if ! golangci-lint run; then
-    echo "❌ Error: El Linter encontró problemas. Push cancelado."
+if [ $? -ne 0 ]; then
+    echo "❌ [ERROR] Los tests fallaron. El push ha sido bloqueado."
+    echo "Corrige el código antes de intentar subirlo."
     exit 1
 fi
 
-echo "✅ Código perfecto. Procediendo al envío..."
+echo "✅ Tests pasados. Iniciando subida a GitHub..."
+exit 0
