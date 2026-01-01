@@ -22,9 +22,8 @@ echo -e "${CYAN}🚀 Iniciando Sentinel Watchdog...${NC}"
 
 # 1. Asegurar que el binario existe (Compilación fresca)
 echo -e "${YELLOW}⚙️ Compilando binario de producción...${NC}"
-go build -o $BINARY .
 
-if [ $? -ne 0 ]; then
+if ! go build -o "$BINARY" .; then
     echo -e "${RED}❌ Error crítico: El código no compila.${NC}"
     exit 1
 fi

@@ -14,12 +14,13 @@ import (
 	"time"
 )
 
+// SystemStatus representa las métricas de salud y rendimiento del servidor.
 type SystemStatus struct {
-	Uptime        string `json:"uptime"`
+	Uptime       string `json:"uptime"`
 	GoVersion     string `json:"go_version"`
-	MemoryAlloc   uint64 `json:"memory_alloc_mb"`
+	MemoryAlloc  string `json:"memory_alloc_mb"`
 	NumGoroutines int    `json:"num_goroutines"`
-	ApiHealth     string `json:"api_health"`
+	APIHealth    string `json:"api_health"` 
 }
 
 var startTime = time.Now()

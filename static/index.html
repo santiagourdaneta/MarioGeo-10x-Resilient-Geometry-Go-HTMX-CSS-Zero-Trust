@@ -37,15 +37,17 @@
         }
 
         .bento-item {
+            background: #1a1a1a; /* Fallback para navegadores viejos */
             background: var(--glass);
-            backdrop-filter: blur(15px); /* Efecto Esmerilado moderno */
-            border-radius: 24px;
-            padding: 30px;
+            backdrop-filter: blur(15px);
+            border: 1px solid #333; /* Fallback */
             border: 1px solid var(--border);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            border-radius: 24px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            padding: 30px;
+            transition: border-color 0.3s ease, transform 0.3s ease; /* Orden alfabético: B antes que T */
         }
 
         .bento-item:hover {
