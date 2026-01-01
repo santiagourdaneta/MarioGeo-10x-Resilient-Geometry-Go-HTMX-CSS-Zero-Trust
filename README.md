@@ -11,6 +11,41 @@ Puedes probar el sistema en tiempo real aquí: [https://mariogeo-10x-resilient-g
 
 **MarioGeo** es una plataforma de ingeniería geométrica de alto rendimiento. Diseñada para hardware restringido, utiliza una arquitectura de comunicación asíncrona y autocuración (Auto-healing) para garantizar disponibilidad constante.
 
+## 🏗️ Principios de Diseño
+
+El proyecto se rige bajo el principio de Separación de Responsabilidades (SoC), garantizando un código limpio, testeable y escalable:
+
+Backend (Go): Lógica de negocio pura. Los cálculos geométricos están aislados en geometry.go, mientras que la infraestructura de red reside en main.go.
+
+Frontend Modular: * index.html: Estructura semántica pura.
+
+style.css: Estética validada por Stylelint (orden alfabético y fallbacks de compatibilidad).
+
+app.js: Comportamiento y lógica de cliente desacoplada.
+
+Observabilidad Nativa: Implementación de un Watchdog Sentinel en Bash que monitorea proactivamente la salud del proceso y el consumo de RAM.
+
+Zero-Dependency Frontend: Uso de HTMX para mantener la interactividad sin la carga cognitiva ni el peso de los frameworks de JS modernos.
+
+🛠️ Quality Assurance (QA)
+
+Para mantener los estándares de 2026, el repositorio integra un pipeline de análisis estático:
+
+Linting: Validado con Revive (Go), Stylelint (CSS) y JSHint (JS).
+
+Security: Escaneo de vulnerabilidades en contenedores mediante el Dockerfile multi-stage.
+
+Resiliencia: Capacidad de auto-recuperación ante fugas de memoria o caídas críticas.
+
+
+PROS: 
+
+No hay código espagueti: Cada tecnología está en su sitio.
+
+Cinsciencia del rendimiento: Zero-Dependency.
+
+DevOps: Observabilidad y Auto-recuperación.
+
 
 ## 🏗️ Arquitectura del Sistema
 
@@ -34,6 +69,7 @@ Para mantener el sistema ligero, he eliminado la dependencia de Node.js, utiliza
 El sistema incluye telemetría en tiempo real:
 - **Watchdog en Terminal:** Monitorea RAM y CPU cada 15s.
 - **Dashboard Web:** Integración con `/api/status` para visualizar el estado del servidor directamente en la UI mediante HTMX.
+
 
 ## 📦 Instalación y Desarrollo Rápido
 
