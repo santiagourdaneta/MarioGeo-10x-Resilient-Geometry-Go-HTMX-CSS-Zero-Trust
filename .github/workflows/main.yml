@@ -1,4 +1,6 @@
 name: Despliegue Estelar
+permissions:
+  contents: read
 on: [push]
 jobs:
   test:
