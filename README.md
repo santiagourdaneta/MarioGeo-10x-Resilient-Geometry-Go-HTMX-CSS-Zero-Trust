@@ -1,5 +1,9 @@
 # 📐 MarioGeo: Sistema Geométrico 10x 
 
+## 🌐 Live Demo
+
+Puedes probar el sistema en tiempo real aquí: [https://mariogeo-10x-resilient-geometry-go-htmx.onrender.com/](https://mariogeo-10x-resilient-geometry-go-htmx.onrender.com/)
+
 ![CI](https://github.com/santiagourdaneta/MarioGeo-10x-Resilient-Geometry-Go-HTMX-CSS-Zero-Trust/actions/workflows/ci.yml/badge.svg)
 ![Status](https://img.shields.io/badge/Status-ALIVE-success?style=for-the-badge)
 ![Architecture](https://img.shields.io/badge/Architecture-Zero--Trust-red?style=for-the-badge)
@@ -57,39 +61,3 @@ Garantizo la precisión matemática mediante tests unitarios:
 Cubre: Lógica de polígonos, cálculo de triángulos y manejo de errores.
 
 Ingeniería de Santiago Urdaneta | Zero-Trust Architecture | 2026
-
-
-🗺️ Roadmap de Evolución (Vision 2026)
-El proyecto está diseñado para evolucionar hacia una plataforma de grado industrial siguiendo estos hitos:
-
-🟢 Fase 1: Portabilidad Inmutable (Q1 2026)
-Dockerización Ultra-Light: Creación de un Dockerfile multi-stage basado en scratch para generar imágenes de <15MB.
-
-Orquestación Básica: Configuración de docker-compose para despliegue instantáneo con balanceo de carga.
-
-🟡 Fase 2: Mobile-First & Offline (Q2 2026)
-PWA (Progressive Web App): Implementación de Service Workers para que la calculadora funcione sin conexión a internet.
-
-Manifest V3: Soporte para instalación nativa en dispositivos móviles y escritorio.
-
-🟡 Fase 3: Gráficos de Alto Vértigo (Q3 2026)
-Renderizado WebGL: Integración de Three.js o WebGL puro para visualizar los polígonos en 3D real mientras el usuario escribe.
-
-Exportación CAD: Funcionalidad para descargar los cálculos en formatos vectoriales (.svg / .dxf).
-
-🔴 Fase 4: Escalabilidad Global (Q4 2026)
-Distribución en el Edge: Despliegue en Fly.io o Cloudflare Workers para latencias <50ms a nivel mundial.
-
-API Pública Protegida: Implementación de Rate Limiting avanzado y claves API para uso por terceros.
-
-
-Motivaciones del Roadmap de Evolución (Vision 2026):
-
-Dockerización: Preparar el código para la nube moderna.
-
-PWA: Experiencia del usuario (UX) y el acceso en áreas con mala conexión.
-
-WebGL: Elevar el proyecto de "herramienta de texto" a "experiencia visual" (Vértigo 3D).
-
-
-Este Roadmap es dinámico. Se priorizan las tareas que maximicen la resiliencia y minimicen el consumo de recursos.
